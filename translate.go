@@ -1,6 +1,9 @@
 package main
 
-import "strings"
+import (
+	"strings"
+	"unicode"
+)
 
 var vowels = map[rune]rune{
 	'a': '1',
@@ -24,7 +27,7 @@ func Encode(in string) string {
 
 	for _, word := range words {
 		word = strings.Map(func(r rune) rune {
-			if u, ok := vowels[r]; ok {
+			if u, ok := vowels[unicode.ToLower(r)]; ok {
 				return u
 			}
 			return r
